@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import DashBoard from './component/DashBoard/DashBoard'
+import Form from './component/Form/Form'
+import Header from './component/Header/Header'
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state ={
+      inv_list: [{name:'123',price:12,image:'123'},{name:'abc',price:99,image:'dfg'},{name:'lkj',price:56,image:'lkl'},{name:'jkj',price:55,image:'asd'},]
+    }
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Header/>
+        <DashBoard invList={this.state.inv_list}/>
+        <Form/>
       </div>
     );
   }
