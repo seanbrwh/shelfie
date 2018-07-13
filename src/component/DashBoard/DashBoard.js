@@ -14,7 +14,7 @@ export default class DashBoard extends Component{
             
                 {
                     invList.map(e=>(
-                        <Product name={e.name} price={e.price} img={e.image}/>
+                        <Product key={e.id} name={e.name} price={e.price} img={e.img_url}/>
                     ))
                 }
             </div>

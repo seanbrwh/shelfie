@@ -1,12 +1,13 @@
 import React from 'react';
 
-export default function Product(){
-    console.log(this.props)
+export default function Product(props){
+    
     return(
         <div>
-            <h1>
-            Product
-            </h1>
+            <div>{props.name}</div>
+            <div>{props.price}</div>
+            <div>{props.img}</div>
+            
         </div>
     )
 }

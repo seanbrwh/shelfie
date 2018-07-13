@@ -1,17 +1,23 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
-const ctrl = require('./controller');
-const massive = require('massive');
 const port = 3010;
 const {CONNECTION_STRING} = process.env;
+const massive = require('massive');
+const bodyParser = require('body-parser');
+const ctrl = require('./controller')
+const cors = require('cors');
 
+app.use(cors())
 app.use(bodyParser.json());
 app.listen(port,()=>{
     console.log(`Listening on Port: ${port}`);
 });
 
+app.get('/api/inventory', ctrl.read);
+app.post('/api/product', ctrl.create)
+
 massive(CONNECTION_STRING).then(connection=>{
+    console.log(`DB IS CONN`);
     app.set('db',connection);
 }).catch(err=> console.log(err))

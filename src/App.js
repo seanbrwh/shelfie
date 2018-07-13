@@ -1,23 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import DashBoard from './component/DashBoard/DashBoard'
 import Form from './component/Form/Form'
 import Header from './component/Header/Header'
+import axios from 'axios';
 
 class App extends Component {
   constructor(){
     super()
     this.state ={
-      inv_list: [{name:'123',price:12,image:'123'},{name:'abc',price:99,image:'dfg'},{name:'lkj',price:56,image:'lkl'},{name:'jkj',price:55,image:'asd'},]
+      inv_list: []
     }
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+  componentDidMount(){
+    axios.get('http://localhost:3010/api/inventory').then(res=>{
+        this.setState({
+        inv_list: res.data
+      })
+    })
   }
   render() {
     return (
       <div className="App">
         <Header/>
         <DashBoard invList={this.state.inv_list}/>
-        <Form/>
+        <Form cDM={this.componentDidMount}/>
       </div>
     );
   }
