@@ -17,12 +17,12 @@ export default class Form extends Component{
     }
     handleImage(val){
         this.setState({
-            image_Url:val
+            img_url:val
         })
     }
     handleName(val){
         this.setState({
-            product_Name:val
+            name:val
         })
     }
     handlePrice(val){
@@ -39,11 +39,12 @@ export default class Form extends Component{
     }
     addToInv(){
         let {img_url,name,price} = this.state;
-        axios.post('http://localhost:3010/api/product',[{name,price,img_url}]).then(response=>{
+        axios.post('http://localhost:3010/api/product',{name,price,img_url}).then(response=>{
             console.log(response);
             this.props.cDM()
-            this.handleCancel()
         })
+        
+        this.handleCancel()
         
         
         

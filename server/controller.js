@@ -18,5 +18,11 @@ module.exports = {
             console.log(err);
             res.status(500).send({errorMessage:'Something Went Wrong'})
         })
+    },
+    update:(req,res)=>{
+        const db = req.app.get('db');
+    },
+    delete:(req,res)=>{
+        const db = req.app.get('db');
     }
 }
